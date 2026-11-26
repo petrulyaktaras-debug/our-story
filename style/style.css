@@ -1,32 +1,35 @@
 @import url(main.css);
 @import url(header.css);
 @import url(footer.css);
+
 * {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+
 :root {
   --color-1: #6b4350;
   --color-2: #3b1520;
   --color-3: #fbf1ee;
   --color-4: #ffffff;
 }
+
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
+  overflow-x: hidden;
 }
-.apple-reveal {
-  animation: appleReveal linear both;
-  animation-timeline: view();
-  animation-range: entry 0% exit 100%;
-}
-/* APPLE STYLE SCROLL ANIMATION */
 
+img {
+  max-width: 100%;
+}
+
+/* ===== APPLE STYLE SCROLL ANIMATION ===== */
 .apple-reveal {
   animation: appleReveal linear both;
   animation-timeline: view();
   animation-range: entry 0% exit 100%;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
 
 @keyframes appleReveal {
@@ -50,7 +53,28 @@ body {
   }
 }
 
-/* Для користувачів, які вимкнули анімації */
+/* планшет і телефон: легша анімація, без розмиття і згасання на виході */
+@media (max-width: 900px) {
+  .apple-reveal {
+    animation-name: appleRevealMobile;
+    animation-range: entry 0% entry 30%;
+    will-change: auto;
+  }
+}
+
+@keyframes appleRevealMobile {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* для користувачів, які вимкнули анімації */
 @media (prefers-reduced-motion: reduce) {
   .apple-reveal {
     animation: none;
