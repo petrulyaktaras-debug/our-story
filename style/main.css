@@ -220,36 +220,65 @@ h2 {
 /* ===== photos.html ===== */
 .main-container {
   width: 100%;
-  min-height: 800px;
+  min-height: 100vh;
   background-color: #ead2cd;
+  padding-bottom: 60px;
 }
 
 .logo-photo {
-  padding-top: 45px;
-  padding-left: 50px;
+  padding: 45px 60px 0;
+  margin-bottom: 30px;
 }
 
 .main-photo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
   display: grid;
-  max-width: 800px;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  padding-left: 140px;
 }
 
 .photo-page {
-  margin-bottom: 10px;
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: auto; /* важливо: прибирає фіксовані 300px */
+  aspect-ratio: 1; /* квадрат; для вертикальних фото: 3 / 4 */
+  object-fit: cover; /* фото не розтягується, а обрізається */
   border-radius: 15px;
+  display: block;
   transition:
     transform 0.4s ease,
     box-shadow 0.4s ease;
 }
 
-.photo-page:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+@media (hover: hover) {
+  .photo-page:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  }
+}
+
+@media (max-width: 900px) {
+  .logo-photo {
+    padding: 32px 24px 0;
+  }
+  .main-photo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo-photo {
+    padding: 24px 16px 0;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .main-photo {
+    gap: 10px;
+    padding: 0 16px;
+  }
 }
 
 /* ===== whyareyou.html: картки, що перевертаються ===== */
